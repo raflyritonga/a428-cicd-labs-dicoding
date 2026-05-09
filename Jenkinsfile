@@ -3,10 +3,10 @@ node {
         checkout scm
     }
 
-    docker.image('node:lts-buster-slim').inside('-p 3000:3000') {
+    docker.image('node:16-buster-slim').inside('-p 3000:3000') {
 
         stage('Build') {
-            withEnv(['CI=true', 'NODE_OPTIONS=--openssl-legacy-provider']) {
+            withEnv(['CI=true']) {
                 sh 'npm install'
             }
         }
