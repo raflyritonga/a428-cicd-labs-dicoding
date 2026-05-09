@@ -6,7 +6,7 @@ node {
     docker.image('node:lts-buster-slim').inside('-p 3000:3000') {
 
         stage('Build') {
-            withEnv(['CI=true']) {
+            withEnv(['CI=true', 'NODE_OPTIONS=--openssl-legacy-provider']) {
                 sh 'npm install'
             }
         }
