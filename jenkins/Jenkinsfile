@@ -1,35 +1,23 @@
 node {
-
-    def app
-
-    stage('Clone Repository') {
-
-        checkout scm
-
+    environment {
+        CI = 'true'
     }
 
-    stage('Build') {
+    docker.image('node:lts-buster-slim').inside('-p 3000:3000') {
 
-        app = docker.build("react-app")
+        stage('Build') {
+            sh 'npm install'
+        }
 
-    }
+        stage('Test') {
+            sh './jenkins/scripts/test.sh'
+        }
 
-    stage('Test') {
-
-        docker.image("react-app").inside {
-
-            sh 'echo "Running tests..."'
-
-            sh 'CI=true npm test --watchAll=false || true'
-
+        stage('Deliver') {
+            sh './jenkins/scripts/deliver.sh'
+            input message: 'Finished using the website? (Click "Proceed" to continue)'
+            sh './jenkins/scripts/kill.sh'
         }
 
     }
-
-    stage('Push Image') {
-
-        echo 'Skipping push for local build'
-
-    }
-
 }
