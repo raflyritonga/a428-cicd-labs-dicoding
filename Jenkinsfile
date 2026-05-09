@@ -1,16 +1,20 @@
 node {
-    environment {
-        CI = 'true'
+    stage('Clone Repository') {
+        checkout scm
     }
 
     docker.image('node:lts-buster-slim').inside('-p 3000:3000') {
 
         stage('Build') {
-            sh 'npm install'
+            withEnv(['CI=true']) {
+                sh 'npm install'
+            }
         }
 
         stage('Test') {
-            sh './jenkins/scripts/test.sh'
+            withEnv(['CI=true']) {
+                sh './jenkins/scripts/test.sh'
+            }
         }
 
         stage('Deliver') {
