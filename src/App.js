@@ -8,11 +8,23 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">React App</h1>
+          <span className="App-badge">react-app branch</span>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <main className="App-main">
+          <p className="App-intro">
+            A simple React single-page app deployed via Jenkins CI/CD.
+          </p>
+          <div className="App-card">
+            <h2>Edit and reload</h2>
+            <p>
+              To get started, edit <code>src/App.js</code> and save to reload.
+            </p>
+          </div>
+        </main>
+        <footer className="App-footer">
+          Built with React &middot;
+        </footer>
       </div>
     );
   }
