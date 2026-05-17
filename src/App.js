@@ -9,7 +9,7 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">React App</h1>
-          <span className="App-badge">react-app branch</span>
+          <span className="App-badge">react-app-final branch</span>
         </header>
         <main className="App-main">
           <p className="App-intro">
@@ -23,7 +23,7 @@ class App extends Component {
           </div>
         </main>
         <footer className="App-footer">
-          Built with React &middot;
+          Built with React
         </footer>
       </div>
     );
